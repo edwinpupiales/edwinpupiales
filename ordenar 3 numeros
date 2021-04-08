@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+void ingresar(int *x){
+    printf("Ingrese un numero : ");
+    scanf("%d",x);
+}
+
+void ordenar(int *x,int *y){
+    int z;
+    if(*x>*y){
+        z=*x;
+        *x=*y;
+        *y=z;
+    }
+}
+void imprimir(int x){
+    printf("\t%d\n",x);
+}
+int main()
+{
+	int a,b,c;
+	ingresar (&a);
+	ingresar (&b);
+	ingresar (&c);  
+	ordenar(&a,&b);
+	ordenar(&b,&c);
+	ordenar(&a,&b);
+	imprimir(a);
+    imprimir(b);
+    imprimir(c);
+    return 0;
+}
