@@ -1,0 +1,145 @@
+#include <stdio.h>
+#define dim 3
+
+struct Estudiante {
+	long int cedula;
+	char nombre [20];
+	int edad;
+	double notas[4];
+};//declaracion TDA
+
+long int validarcedula(long int *ci){
+    int z,A[10],mul,sumimp,sump,sum,c,dcsup,digitov,v;
+    long int coc,ced;
+    do{
+        ced=*ci;
+        sumimp=0;
+        sump=0;
+        z=9;
+        if(*ci<999999999)
+            A[0]=0;
+        do{
+            coc=*ci/10;
+            A[z]=*ci%10;
+            *ci=coc;
+            z--;
+        }while(*ci!=0);
+        for(z=0;z<9;z+=2){
+            mul=A[z]*2;
+            if(mul>9)
+                mul-=9;
+            sump+=mul;
+        }
+        for(z=1;z<8;z+=2){
+            sumimp+=A[z];
+        }
+        sum=sump+sumimp;
+        c=sum/10;
+        dcsup=c*10+10;
+        digitov=dcsup-sum;
+        if(digitov==10)
+            digitov=0;
+        if(digitov==A[9]){
+            *ci=ced;
+            v=1;
+        }else{
+            printf("Error, ingrese cedula valida: ");
+            scanf("%ld",&*ci);
+            v=0;
+        }
+    }while(v==0);
+}
+void ingresar(Estudiante *x)
+{
+    printf("\nIngrese su cedula: ");
+    scanf("%ld",&x->cedula);
+    validarcedula(&x->cedula);
+    fflush(stdin);
+    printf("\tIngrese su nombre: ");
+    gets(x->nombre);
+    printf("\tIngrese su edad: ");
+	scanf("%d",&x->edad);
+	        		 while ( x->edad < 18|| x->edad > 65 )
+    {
+        printf( "\n   ERROR: edad no de acuerdo" );
+        printf( "\n   Introduzca edad (valida): " );
+        scanf( "%d", &x->edad);
+    }
+	printf("Ingrese las notas\t\n");
+	for(int i=0;i<3;i++){
+        printf("\tIngrese la nota %d: ",i+1);
+        scanf("%lf",&x->notas[i]);
+        		 while ( x->notas[i]< 0 || x->notas[i] > 20 )
+    {
+        printf( "\n   ERROR: Nota no valida " );
+        printf( "\n   Introduzca nota : " );
+        scanf( "%lf", &x->notas[i]);
+    }
+	}
+}
+void promedio(double n[4]){
+    n[3]=(n[0]+n[1]+n[2])/3;
+}
+void imprimir(Estudiante x){
+    printf("\tCedula: %ld\n",x.cedula);
+    printf("\nIngrese su nombre: ");
+    //gets(x->nombre);
+    puts(x.nombre);
+    printf("\tEdad: %d\n",x.edad);
+    for(int i=0;i<3;i++){
+        printf("Nota %d es: 2lf\n",i+1,x.notas[i]);
+    printf("Promedio: %.2lf\n",x.notas[3]);
+    }
+    if(x.notas[3]>=14){
+        printf("Aprovado\n");
+    }else
+        printf("Reprovado\n");
+}
+
+void mayor(double X[3]){
+	double mayor=X[3],aux;
+	for(int i=0;i<3;i++){
+        aux=X[i];
+        if(aux>mayor)
+            mayor=aux;
+	}
+    printf("La nota mayor es: %d\n",mayor);
+}
+void menor(double X[3]){
+	double menor=X[3],aux;
+	for(int i=0;i<3;i++){
+        aux=X[i];
+        if(aux<menor)
+            menor=aux;
+	}
+    printf("La nota menor es: %d\n",menor);
+}
+void ordenar(int *x,int *y){
+    int z;
+    if(*x>*y){
+        z=*x;
+        *x=*y;
+        *y=z;
+    }
+}
+int main(){
+    Estudiante e1[dim];
+    double sum=0,cont=0,prom;
+    for (int i=0;i<dim;i++)
+    {
+      ingresar(&e1[i]);//direccion de la variable ei ff007
+      promedio(e1[i].notas);
+      imprimir(e1[i]);
+      mayor(e1[i].notas);
+      menor(e1[i].notas);
+      for (int j=0;j<=2;j++){
+      	sum=sum + e1[i].notas[j];
+      	e1[i].notas[j];
+    	++cont;
+	  }
+    }
+    prom=sum/cont;
+    printf ("\n\nPromedio final  %lf \n\n",prom);
+    
+    return 0;
+}
