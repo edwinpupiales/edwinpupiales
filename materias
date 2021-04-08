@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define dim 3
+
+struct Estudiante{
+	long int cedula;
+	char nombre[20];
+	int edad;
+};//declaracion de TDA
+
+struct Materia{
+	int codigo;
+	char nombre[11];
+	double notas[4];
+	int creditos;
+};
+struct Matricula{
+	int codigo;
+	Materia datos_materia;
+	Estudiante datos_estudiantes;
+	double valor;
+};
+
+void ingresar(Matricula *x,int z){
+
+	x->codigo=z;
+	printf("Ingrese su cedula: ");
+	scanf("%ld",&x->datos_estudiantes.cedula);
+	//validarcedula(&x->datos_estudiantes.cedula);
+	fflush(stdin);//vaciar el buffer del teclado
+	printf ("Ingrese su nombre: ");
+	gets(x->datos_estudiantes.nombre);
+	printf("Ingrese su edad: ");
+	scanf("%i",&x->datos_estudiantes.edad);
+	fflush(stdin);
+	printf("Ingrese el codigo de la materia: ");
+	scanf("%i",&x->datos_materia.codigo);
+	fflush(stdin);
+	printf ("Ingrese el nombre de la materia: ");
+	gets(x->datos_materia.nombre);
+
+	printf ("Ingrese las notas: \n");
+	for (int i=0;i<3;i++){
+		printf ("Ingrese la nota %i: ",i+1);
+		scanf("%lf",&x->datos_materia.notas[i]);
+	}
+	x->datos_materia.creditos=5;
+	x->valor=x->datos_materia.creditos*25;
+}
+void imprimir (Matricula x){
+
+	printf("\nCodigo Matricula es: %i",x.codigo);
+	printf("\nCedula: %li\n",x.datos_estudiantes.cedula);
+	printf ("Nombre: ");
+	puts(x.datos_estudiantes.nombre);
+	printf("\nEdad: %i\n",x.datos_estudiantes.edad);
+	printf("\nCodigo Materia: %i",x.datos_materia.codigo);
+	printf("\nNombre de la materia: ");
+	puts(x.datos_materia.nombre);
+	for (int i=0;i<3;i++){
+		printf("\nnota: %i es %lf",i+1,x.datos_materia.notas[i]);
+	}
+	printf("\nPromedio: %lf\n",x.datos_materia.notas[3]);
+	printf("\nCreditos: %i",x.datos_materia.creditos);
+	printf("\nValor a pagarse: %lf\n",x.valor);
+}
+void promedio(double n[]){
+
+	n[3]=(n[0]+n[1]+n[2])/3;
+
+}
+int main(){
+
+    Matricula e1[dim];
+	int z;
+
+	for (int i=0;i<dim;i++)
+    {
+    	z=234+i+1*8;
+      ingresar(&e1[i],z);//Direccion de la variable e1 ff007
+      promedio(e1[i].datos_materia.notas);
+      imprimir(e1[i]);
+    }
+
+    system("pause");
+    return 0;
+}
