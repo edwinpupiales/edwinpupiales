@@ -1,0 +1,27 @@
+#include <studio.h>
+
+struct Estudiante{
+	long int cedula;
+	char nombre[20];
+	int edad;
+	double nota;
+};// declaracion de TDA
+int main(int argc,char**argv) 
+{
+	estudiante e1;// declaracion de la variable e1
+	printf("ingrese su cedula:");
+	scanf("%ld",&e1.cedula);
+	fflush(stdin);// vaciar el buffer del teclado
+	printf("ingrese su nombre")
+	gets(e1.nombre);
+	printf("ingrese su edad :");
+	scanf("%lf",&e1.edad);
+	printf("ingrese su nota:");
+	printf("cedula:%ld\n",e1,cedula);
+	punts(e1.nombre);//printf(``nombre:%s\n,e1.nombre);
+	printf("edad:%d\n"e1.edad);
+	printf("nota:%lf\n",e1.nota);
+	
+	
+	return 0;
+}
